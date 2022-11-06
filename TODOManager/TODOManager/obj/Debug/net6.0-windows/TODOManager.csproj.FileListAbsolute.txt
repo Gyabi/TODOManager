@@ -13,8 +13,6 @@ C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\Unity.Abstractions.dll
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\Unity.Container.dll
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\TODOManager.csproj.AssemblyReference.cache
-C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\Views\MainWindow.baml
-C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\Views\MainWindow.g.cs
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\TODOManager_MarkupCompile.cache
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\TODOManager.g.resources
@@ -35,3 +33,5 @@ C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.engine.core.dll
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\testcentric.engine.metadata.dll
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.framework.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\Presentation\Views\MainWindow.baml
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\Presentation\Views\MainWindow.g.cs

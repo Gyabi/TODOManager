@@ -1,6 +1,6 @@
 ﻿using Prism.Ioc;
 using System.Windows;
-using TODOManager.Views;
+using TODOManager.Presentation.Views;
 
 namespace TODOManager
 {

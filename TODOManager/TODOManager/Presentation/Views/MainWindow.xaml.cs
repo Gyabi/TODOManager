@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TODOManager.Views
+namespace TODOManager.Presentation.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
