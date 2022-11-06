@@ -10,6 +10,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\UseCase\" />
-    <Folder Include="Presentation\Models\" />
   </ItemGroup>
 </Project>

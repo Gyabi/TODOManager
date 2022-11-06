@@ -12,12 +12,12 @@ namespace Test.Sample
     [TestFixture]
     internal class SampleTest
     {
-        [TestCase("test")]
-        [TestCase("test2")]
-        public void ExeTest1(string itemName)
-        {
-            TodoItem todoitem = new TodoItem(itemName);
-            Assert.AreEqual(todoitem.ItemName, itemName);
-        }
+        //[TestCase("test")]
+        //[TestCase("test2")]
+        //public void ExeTest1(string itemName)
+        //{
+        //    TodoItem todoitem = new TodoItem(itemName);
+        //    Assert.AreEqual(todoitem.ItemName, itemName);
+        //}
     }
 }
