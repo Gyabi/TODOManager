@@ -28,3 +28,10 @@ C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\TODOManager.pdb
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\TODOManager.genruntimeconfig.cache
 C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\obj\Debug\net6.0-windows\ref\TODOManager.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\NUnit3.TestAdapter.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\NUnit3.TestAdapter.pdb
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.engine.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.engine.api.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.engine.core.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\testcentric.engine.metadata.dll
+C:\Users\buyuu\Programming\008_Cs\TODOManager\TODOManager\TODOManager\bin\Debug\net6.0-windows\nunit.framework.dll
