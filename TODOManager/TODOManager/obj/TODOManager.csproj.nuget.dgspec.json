@@ -40,14 +40,6 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "NUnit": {
-              "target": "Package",
-              "version": "[3.13.3, )"
-            },
-            "NUnit3TestAdapter": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            },
             "Prism.Unity": {
               "target": "Package",
               "version": "[8.1.97, )"

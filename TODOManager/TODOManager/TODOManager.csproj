@@ -5,8 +5,6 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.0" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="ReactiveProperty" Version="8.1.2" />
   </ItemGroup>
