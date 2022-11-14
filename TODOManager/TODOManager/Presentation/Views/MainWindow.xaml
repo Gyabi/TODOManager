@@ -8,40 +8,31 @@
         mc:Ignorable="av" x:Class="TODOManager.Presentation.Views.MainWindow"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:local="clr-namespace:TODOManager.Presentation.Views"
         Title="{Binding Title.Value}" Height="350" Width="525" GlowBrush="{DynamicResource AccentColorBrush}" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="485*"/>
             <ColumnDefinition Width="38*"/>
         </Grid.ColumnDefinitions>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.ColumnSpan="2" />
+
+
+        <!--リストでタスクを表示-->
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding TodoItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <local:TodoItemCard  DataContext="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
         <Button
                 HorizontalAlignment="Left"
                 Content="Add"
                 Command="{Binding AddCommend}" Grid.ColumnSpan="2" Margin="403,304,0,0" Width="84" />
-
-        <!--リストでタスクを表示-->
-        <ListView x:Name="listView" ItemsSource="{Binding TodoItems}" HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=itemName}">
-                        <GridViewColumnHeader Content="ItemName" Tag="ItemName"/>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=projectID.id}">
-                        <GridViewColumnHeader Content="ProjectID" Tag="ProjectID"/>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=deadLine}">
-                        <GridViewColumnHeader Content="DeadLine" Tag="DeadLine"/>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=priority}">
-                        <GridViewColumnHeader Content="Priority" Tag="Priority"/>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=detail.detail}">
-                        <GridViewColumnHeader Content="Detail" Tag="Detail"/>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
 
     </Grid>
 

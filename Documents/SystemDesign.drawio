@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="kSgNSYSvU-H4MmhfC-NR" name="システム関連図">
-        <mxGraphModel dx="1204" dy="494" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1178" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -26,7 +26,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="sidqGBoauy6GtIoiTW4q" name="ユースケース図">
-        <mxGraphModel dx="1204" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="695" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="wXhZF5dLp7jZGbiL3m5J-0"/>
                 <mxCell id="wXhZF5dLp7jZGbiL3m5J-1" parent="wXhZF5dLp7jZGbiL3m5J-0"/>
@@ -85,7 +85,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="dyqmnc4GAPrBXHukTLk-" name="ドメインモデル図/オブジェクト図">
-        <mxGraphModel dx="1204" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1016" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="g3xo-A28JvrqHw1Gon5J-0"/>
                 <mxCell id="g3xo-A28JvrqHw1Gon5J-1" parent="g3xo-A28JvrqHw1Gon5J-0"/>
@@ -181,6 +181,29 @@
                 </mxCell>
                 <mxCell id="CBn564a9OqAlvJiiuTiv-2" value="あくまでメインはタスクであり、プロジェクトクラスは" style="whiteSpace=wrap;html=1;" parent="g3xo-A28JvrqHw1Gon5J-1" vertex="1">
                     <mxGeometry x="790" y="430" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="FVZddPnpwbqgzGMESONE" name="UIデザイン">
+        <mxGraphModel dx="695" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="SjGD8kANbta7QmZOIJd2-0"/>
+                <mxCell id="SjGD8kANbta7QmZOIJd2-1" parent="SjGD8kANbta7QmZOIJd2-0"/>
+                <mxCell id="9HEaApXd30KKneQBB-U4-0" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry width="480" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="9HEaApXd30KKneQBB-U4-1" value="タスク1&lt;br&gt;detail:hogehoge" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry x="20" y="20" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9HEaApXd30KKneQBB-U4-2" value="タスク1&lt;br&gt;detail:hogehoge" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry x="20" y="70" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9HEaApXd30KKneQBB-U4-3" value="子タスク1&lt;br&gt;detail:fugefuge" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry x="30" y="115" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9HEaApXd30KKneQBB-U4-4" value="高" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry x="380" y="70" width="40" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -18,9 +18,9 @@ namespace TODOManager.Presentation.Models
         public ReactiveCollection<TodoItem> GetTodoItems()
         {
             ReactiveCollection<TodoItem> todoItems = new ReactiveCollection<TodoItem>();
-            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.HIGH, new Detail("detail"), null, new List<TodoItemID>()));
-            todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItemID>()));
-            todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItemID>()));
+            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.HIGH, new Detail("detail"), null, new List<TodoItem>()));
+            todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
+            todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
 
             return todoItems;
         }

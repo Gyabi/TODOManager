@@ -38,7 +38,7 @@ namespace TODOManager.Presentation.ViewModels
         /// </summary>
         public void AddTodoItem()
         {
-            TodoItem addItem = new TodoItem("add", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItemID>());
+            TodoItem addItem = new TodoItem("add", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>());
             this.TodoItems.Add(addItem);
             this.mainWindowModel.AddTodoItem(addItem);
         }
