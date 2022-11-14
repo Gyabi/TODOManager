@@ -10,24 +10,32 @@ using System.Diagnostics;
 using TODOManager.Presentation.Models;
 using System.Collections.Generic;
 using System;
+using Reactive.Bindings.Extensions;
+using System.Reactive.Disposables;
+using Prism.Navigation;
+using System.Linq;
 
 namespace TODOManager.Presentation.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase, IDestructible
     {
         public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("TODO Manager");
 
-        public ReactiveCollection<TodoItem> TodoItems { get; }
+        public ReadOnlyReactiveCollection<TodoItem> TodoItems { get; }
         public ReactiveCommand AddCommend { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
+
+        private CompositeDisposable disposables = new CompositeDisposable();
 
 
         public MainWindowViewModel(IMainWindowModel mainWindowModel)
         {
             this.mainWindowModel = mainWindowModel;
             //todoアイテムを読みだす
-            this.TodoItems = this.mainWindowModel.GetTodoItems();
+            this.TodoItems = this.mainWindowModel.todoItems
+                .ToReadOnlyReactiveCollection()
+                .AddTo(this.disposables);
 
             this.AddCommend = new ReactiveCommand();
             this.AddCommend.Subscribe(() => this.AddTodoItem());
@@ -38,9 +46,13 @@ namespace TODOManager.Presentation.ViewModels
         /// </summary>
         public void AddTodoItem()
         {
-            TodoItem addItem = new TodoItem("add", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>());
-            this.TodoItems.Add(addItem);
-            this.mainWindowModel.AddTodoItem(addItem);
+            this.mainWindowModel.AddTodoItem();
+        }
+
+
+        public void Destroy()
+        {
+            this.disposables.Dispose();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Reactive.Bindings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +16,23 @@ namespace TODOManager.Presentation.Models
     /// </summary>
     public class MainWindowModel : IMainWindowModel
     {
-        public ReactiveCollection<TodoItem> GetTodoItems()
+        public ObservableCollection<TodoItem> todoItems { get; }
+        public MainWindowModel()
         {
-            ReactiveCollection<TodoItem> todoItems = new ReactiveCollection<TodoItem>();
-            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.HIGH, new Detail("detail"), null, new List<TodoItem>()));
+            List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.NONE, new Detail("detail"), null, new List<TodoItem>()) };
+            Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
+            
+            todoItems = new ObservableCollection<TodoItem>();
+            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.HIGH, detailSample, null, sample));
             todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
             todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
 
-            return todoItems;
         }
 
-        public void AddTodoItem(TodoItem todoItem)
+        public void AddTodoItem()
         {
-            System.Diagnostics.Debug.WriteLine("add todo item");
+            TodoItem addItem = new TodoItem("add", new TodoItemID("itemid"), new ProjectID("projectid"), DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>());
+            this.todoItems.Add(addItem);
         }
     }
 }

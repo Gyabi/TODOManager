@@ -12,17 +12,15 @@
         Title="{Binding Title.Value}" Height="350" Width="525" GlowBrush="{DynamicResource AccentColorBrush}" >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="485*"/>
-            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
 
         <!--リストでタスクを表示-->
-        <ScrollViewer>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Column="0">
             <ItemsControl ItemsSource="{Binding TodoItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        
                         <local:TodoItemCard  DataContext="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

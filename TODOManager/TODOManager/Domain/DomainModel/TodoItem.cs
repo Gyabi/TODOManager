@@ -71,7 +71,8 @@ namespace TODOManager.Domain.DomainModel
     {
         HIGH,
         MEDIUM,
-        LOW
+        LOW,
+        NONE
     }
 
     public class Detail
