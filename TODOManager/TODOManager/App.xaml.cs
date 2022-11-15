@@ -2,6 +2,8 @@
 using Prism.Mvvm;
 using Prism.Unity;
 using System.Windows;
+using TODOManager.Domain.DomainService.Factory;
+using TODOManager.Infrastructure.Factory;
 using TODOManager.Presentation.Models;
 using TODOManager.Presentation.ViewModels;
 using TODOManager.Presentation.ViewModels.interfaces;
@@ -22,7 +24,14 @@ namespace TODOManager
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             //Model
-            containerRegistry.RegisterInstance<IMainWindowModel>(new MainWindowModel());
+            containerRegistry.RegisterSingleton<IMainWindowModel, MainWindowModel>();
+
+            //Factory
+            containerRegistry.RegisterSingleton<IProjectFactory, ProjectFactory>();
+            containerRegistry.RegisterSingleton<ITodoItemFactory, TodoItemFactory>();
+
+            //ポップアップの登録
+            containerRegistry.RegisterDialog<AddTodoDialog, AddTodoDialogViewModel>();
         }
 
         protected override void ConfigureViewModelLocator()

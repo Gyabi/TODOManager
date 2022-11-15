@@ -14,6 +14,7 @@ using Reactive.Bindings.Extensions;
 using System.Reactive.Disposables;
 using Prism.Navigation;
 using System.Linq;
+using Prism.Services.Dialogs;
 
 namespace TODOManager.Presentation.ViewModels
 {
@@ -26,10 +27,13 @@ namespace TODOManager.Presentation.ViewModels
 
         public IMainWindowModel mainWindowModel { get; set; }
 
+        //ポップアップ表示用
+        private IDialogService dialogService;
+
         private CompositeDisposable disposables = new CompositeDisposable();
 
 
-        public MainWindowViewModel(IMainWindowModel mainWindowModel)
+        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogService dialogService)
         {
             this.mainWindowModel = mainWindowModel;
             //todoアイテムを読みだす
@@ -37,8 +41,10 @@ namespace TODOManager.Presentation.ViewModels
                 .ToReadOnlyReactiveCollection()
                 .AddTo(this.disposables);
 
-            this.AddCommend = new ReactiveCommand();
-            this.AddCommend.Subscribe(() => this.AddTodoItem());
+            this.AddCommend = new ReactiveCommand()
+            .WithSubscribe(() => this.AddTodoItem());
+
+            this.dialogService = dialogService;
         }
 
         /// <summary>
@@ -46,7 +52,10 @@ namespace TODOManager.Presentation.ViewModels
         /// </summary>
         public void AddTodoItem()
         {
-            this.mainWindowModel.AddTodoItem();
+            //this.mainWindowModel.AddTodoItem();
+
+            //コールバックは一旦使わない。表示側のVMで直接modelを参照して登録処理まで行ってみる
+            this.dialogService.ShowDialog("AddTodoDialog", null, result => System.Diagnostics.Debug.WriteLine(result.Parameters.GetValue<string>("Test")));
         }
 
 

@@ -12,7 +12,9 @@ namespace TODOManager.Presentation.ViewModels.interfaces
     public interface IMainWindowModel
     {
         public ObservableCollection<TodoItem> todoItems { get; }
-        public void AddTodoItem();
+        public void AddTodoItem(string itemName, string projectID, bool useDeadLine, DateTime deadLine, string priority, string detail);
 
+        public Dictionary<string, string> GetProjectDict();
+        public Dictionary<string, string> GetPriorityDict();
     }
 }

@@ -85,7 +85,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="dyqmnc4GAPrBXHukTLk-" name="ドメインモデル図/オブジェクト図">
-        <mxGraphModel dx="1016" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1201" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="g3xo-A28JvrqHw1Gon5J-0"/>
                 <mxCell id="g3xo-A28JvrqHw1Gon5J-1" parent="g3xo-A28JvrqHw1Gon5J-0"/>
@@ -186,7 +186,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="FVZddPnpwbqgzGMESONE" name="UIデザイン">
-        <mxGraphModel dx="695" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1441" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="SjGD8kANbta7QmZOIJd2-0"/>
                 <mxCell id="SjGD8kANbta7QmZOIJd2-1" parent="SjGD8kANbta7QmZOIJd2-0"/>
@@ -204,6 +204,9 @@
                 </mxCell>
                 <mxCell id="9HEaApXd30KKneQBB-U4-4" value="高" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
                     <mxGeometry x="380" y="70" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="McD36RS-mB1s8ctT0kOV-0" value="登録時には親だけを登録&lt;br&gt;詳細に書き込むと子タスクが可視化されるようにする" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="SjGD8kANbta7QmZOIJd2-1">
+                    <mxGeometry x="490" y="125" width="300" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

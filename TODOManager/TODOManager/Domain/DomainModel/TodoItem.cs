@@ -27,6 +27,10 @@ namespace TODOManager.Domain.DomainModel
         public ProjectID projectID { get; set; }
 
         /// <summary>
+        /// 期限の使用可否
+        /// </summary>
+        public bool useDeadLine { get; set; }
+        /// <summary>
         /// 期限
         /// </summary>
         public DateTime deadLine { get; set; }
@@ -51,11 +55,12 @@ namespace TODOManager.Domain.DomainModel
         /// </summary>
         public List<TodoItem> childItems { get; set; }
 
-        public TodoItem(string itemName, TodoItemID id,　ProjectID projectID, DateTime deadLine, Priority priority, Detail detail, TodoItem pearentItem, List<TodoItem> childItems)
+        public TodoItem(string itemName, TodoItemID id,　ProjectID projectID, bool useDeadLine, DateTime deadLine, Priority priority, Detail detail, TodoItem pearentItem, List<TodoItem> childItems)
         {
             this.itemName = itemName;
             this.id = id;
             this.projectID = projectID;
+            this.useDeadLine = useDeadLine;
             this.deadLine = deadLine;
             this.priority = priority;
             this.detail = detail;

@@ -9,7 +9,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:local="clr-namespace:TODOManager.Presentation.Views"
-        Title="{Binding Title.Value}" Height="350" Width="525" GlowBrush="{DynamicResource AccentColorBrush}" >
+        Title="{Binding Title.Value}" Height="400" Width="600" GlowBrush="{DynamicResource AccentColorBrush}" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
