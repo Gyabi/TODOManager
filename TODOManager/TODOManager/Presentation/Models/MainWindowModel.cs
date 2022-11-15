@@ -12,6 +12,8 @@ using TODOManager.Domain.DomainModel;
 using TODOManager.Domain.DomainService.Factory;
 using TODOManager.Presentation.ViewModels.interfaces;
 using Reactive.Bindings.Extensions;
+using TODOManager.UseCase;
+using Unity;
 
 namespace TODOManager.Presentation.Models
 {
@@ -28,10 +30,10 @@ namespace TODOManager.Presentation.Models
         //プライオリティを示すリスト
         public ObservableCollection<Priority> priorities { get; set; }
 
-        public IProjectFactory projectFactory;
-        public ITodoItemFactory todoItemFactory;
+        [Dependency]
+        public AddTodoUseCase addTodoUseCase;
 
-        public MainWindowModel(IProjectFactory projectFactory, ITodoItemFactory todoItemFactory)
+        public MainWindowModel()
         {
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail"), null, new List<TodoItem>()) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -49,37 +51,21 @@ namespace TODOManager.Presentation.Models
             {
                 this.priorities.Add(priority);
             }
-
-            this.projectFactory = projectFactory;
-            this.todoItemFactory = todoItemFactory;
-        }
-
-        public void AddTodoItem(string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
-        {
-            Enum.TryParse<Priority>(priority, out Priority priorityEnum);
-            Project newProject = GetProjectIDFromString(project);
-            ProjectID newProjectID = (newProject == null) ? this.projects[0].projectID : newProject.projectID;
-
-            TodoItem addItem = new TodoItem(itemName, this.todoItemFactory.CreateTodoItemID(), newProjectID, useDeadLine, deadLine, priorityEnum, new Detail(detail), null, new List<TodoItem>());
-            this.todoItems.Add(addItem);
         }
 
         /// <summary>
-        /// テキストからProjectを検索して返却
+        /// 登録処理
         /// </summary>
-        /// <returns></returns>
-        public Project GetProjectIDFromString(string project)
+        /// <param name="itemName"></param>
+        /// <param name="project"></param>
+        /// <param name="useDeadLine"></param>
+        /// <param name="deadLine"></param>
+        /// <param name="priority"></param>
+        /// <param name="detail"></param>
+        public void AddTodoItem(string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
         {
-            Project outProject = null;
-            foreach(Project _project in projects)
-            {
-                if(_project.projectName == project)
-                {
-                    outProject = _project;
-                }
-            }
-
-            return outProject;
+            TodoItem addItem = this.addTodoUseCase.Execute(this.projects, itemName, project, useDeadLine, deadLine, priority, detail);
+            this.todoItems.Add(addItem);
         }
     }
 }

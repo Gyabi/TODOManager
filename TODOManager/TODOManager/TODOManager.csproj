@@ -9,7 +9,4 @@
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="ReactiveProperty" Version="8.1.2" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UseCase\" />
-  </ItemGroup>
 </Project>
