@@ -52,10 +52,7 @@ namespace TODOManager.Presentation.ViewModels
         /// </summary>
         public void AddTodoItem()
         {
-            //this.mainWindowModel.AddTodoItem();
-
-            //コールバックは一旦使わない。表示側のVMで直接modelを参照して登録処理まで行ってみる
-            this.dialogService.ShowDialog("AddTodoDialog", null, result => System.Diagnostics.Debug.WriteLine(result.Parameters.GetValue<string>("Test")));
+            this.dialogService.ShowDialog("AddTodoDialog", null, null);
         }
 
 

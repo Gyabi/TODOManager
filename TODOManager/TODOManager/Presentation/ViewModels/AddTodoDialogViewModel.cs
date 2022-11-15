@@ -4,6 +4,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Security.Cryptography.Pkcs;
 using System.Windows;
+using MahApps.Metro.Converters;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Regions;
@@ -35,16 +36,13 @@ namespace TODOManager.Presentation.ViewModels
         public ReactivePropertySlim<string> Detail { get; }
 
         /// <summary>プロジェクトの選択肢</summary>
-        private Dictionary<string, string> projectDict = new Dictionary<string, string>();
-        public Dictionary<string, string> ProjectDict { get { return this.projectDict; }  set { SetProperty(ref this.projectDict, value); } }
+        public ReadOnlyReactiveCollection<string> ProjectElements { get; }
 
         /// <summary>選択したプロジェクト</summary>
         public ReactivePropertySlim<string> Project { get; }
 
         /// <summary>プライオリティの選択肢</summary>
-        private Dictionary<string, string> priorityDict = new Dictionary<string, string>();
-        public Dictionary<string, string> PriorityDict { get { return this.priorityDict; } set { SetProperty(ref this.priorityDict, value); } }
-
+        public ReadOnlyReactiveCollection<string> PriorityElements { get; }
         /// <summary>選択したプライオリティ</summary>
         public ReactivePropertySlim<string> Priority { get; }
 
@@ -75,26 +73,32 @@ namespace TODOManager.Presentation.ViewModels
 
         /// <summary>ダイアログOpen時のイベントハンドラ。</summary>
         /// <param name="parameters">IDialogServiceに設定されたパラメータを表すIDialogParameters。</param>
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            this.ProjectDict = this.mainWindowModel.GetProjectDict();
-            this.PriorityDict = this.mainWindowModel.GetPriorityDict();
-        }
+        public void OnDialogOpened(IDialogParameters parameters){}
 
         public AddTodoDialogViewModel(IMainWindowModel mainWindowModel)
         {
+            //DIでモデルを取得
             this.mainWindowModel = mainWindowModel;
 
+            //各種バインド用のメンバを生成
             this.ItemName = new ReactivePropertySlim<string>(string.Empty);
             this.UseDeadLine = new ReactivePropertySlim<bool>(false);
             this.ShowDeadLine = new ReactivePropertySlim<Visibility>(Visibility.Hidden);
             this.UseDeadLine.Subscribe(ChangeShowDeadLine).AddTo(this.disposables);
-                
             this.DeadLine = new ReactivePropertySlim<DateTime>(DateTime.Today);
             this.Detail = new ReactivePropertySlim<string>("detail");
             this.Project = new ReactivePropertySlim<string>(string.Empty);
             this.Priority = new ReactivePropertySlim<string>(string.Empty);
 
+            //選択肢を示す配列をモデルから取得
+            this.ProjectElements = this.mainWindowModel.projects
+                .ToReadOnlyReactiveCollection(x => x.projectName)
+                .AddTo(this.disposables);
+            this.PriorityElements = this.mainWindowModel.priorities
+                .ToReadOnlyReactiveCollection(x => x.ToString())
+                .AddTo(this.disposables);
+
+            //コマンドの設定
             this.SubmitCommand.Subscribe(SubmitCallBack).AddTo(this.disposables);
             this.CancelCommand.Subscribe(CancelCallBack).AddTo(this.disposables);
         }
@@ -139,7 +143,6 @@ namespace TODOManager.Presentation.ViewModels
         /// </summary>
         public void Dispose()
         {
-            System.Diagnostics.Debug.WriteLine("破棄");
             this.disposables.Dispose();
         }
 

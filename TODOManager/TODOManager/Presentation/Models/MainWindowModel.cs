@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TODOManager.Domain.DomainModel;
 using TODOManager.Domain.DomainService.Factory;
 using TODOManager.Presentation.ViewModels.interfaces;
+using Reactive.Bindings.Extensions;
 
 namespace TODOManager.Presentation.Models
 {
@@ -23,6 +25,8 @@ namespace TODOManager.Presentation.Models
         public ObservableCollection<TodoItem> todoItems { get; }
         //プロジェクトを示すリスト
         public ObservableCollection<Project> projects { get; set; }
+        //プライオリティを示すリスト
+        public ObservableCollection<Priority> priorities { get; set; }
 
         public IProjectFactory projectFactory;
         public ITodoItemFactory todoItemFactory;
@@ -37,63 +41,41 @@ namespace TODOManager.Presentation.Models
             todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
             todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
 
-
             //プロジェクトを定義(本当はここでリポジトリから注入)
             this.projects = new ObservableCollection<Project>() { new Project("project1", new ProjectID("id1")), new Project("project2", new ProjectID("id2")) };
+            //プライオリティを定義
+            this.priorities = new ObservableCollection<Priority>();
+            foreach(Priority priority in Enum.GetValues(typeof(Priority)))
+            {
+                this.priorities.Add(priority);
+            }
 
             this.projectFactory = projectFactory;
             this.todoItemFactory = todoItemFactory;
         }
 
-        public void AddTodoItem(string itemName, string projectID, bool useDeadLine, DateTime deadLine, string priority, string detail)
+        public void AddTodoItem(string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
         {
             Enum.TryParse<Priority>(priority, out Priority priorityEnum);
-            Project newProject = GetProjectIDFromString(projectID);
+            Project newProject = GetProjectIDFromString(project);
             ProjectID newProjectID = (newProject == null) ? this.projects[0].projectID : newProject.projectID;
-            Debug.WriteLine(newProjectID.id);
 
             TodoItem addItem = new TodoItem(itemName, this.todoItemFactory.CreateTodoItemID(), newProjectID, useDeadLine, deadLine, priorityEnum, new Detail(detail), null, new List<TodoItem>());
             this.todoItems.Add(addItem);
-        }
-
-        public Dictionary<string, string> GetProjectDict()
-        {
-            //プロジェクトリストから選択肢を生成
-            Dictionary<string, string> projectDict = new Dictionary<string, string>();
-            foreach(Project project in projects)
-            {
-                projectDict.Add(project.projectID.id, project.projectName);
-            }
-
-            return projectDict;
-        }
-
-        public Dictionary<string, string> GetPriorityDict()
-        {
-            //Enumから選択肢を生成
-            Dictionary<string, string> priorityDict = new Dictionary<string, string>();
-
-            Enum.GetValues(typeof(Priority))
-                .OfType<Priority>()
-                .Select((value, index) => new { index, value })
-                .ToList()
-                .ForEach(a => priorityDict.Add(a.index.ToString(), a.value.ToString()));
-
-            return priorityDict;
         }
 
         /// <summary>
         /// テキストからProjectを検索して返却
         /// </summary>
         /// <returns></returns>
-        public Project GetProjectIDFromString(string projectID)
+        public Project GetProjectIDFromString(string project)
         {
             Project outProject = null;
-            foreach(Project project in projects)
+            foreach(Project _project in projects)
             {
-                if(project.projectID.id == projectID)
+                if(_project.projectName == project)
                 {
-                    outProject = project;
+                    outProject = _project;
                 }
             }
 

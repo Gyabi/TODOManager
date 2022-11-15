@@ -42,9 +42,7 @@
                   IsEditable="True"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
-                  ItemsSource="{Binding ProjectDict}"
+                  ItemsSource="{Binding ProjectElements}"
                   SelectedItem="{Binding Project.Value}" />
 
             <!--優先度-->
@@ -52,9 +50,7 @@
                   IsEditable="True"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
-                  ItemsSource="{Binding PriorityDict}"
+                  ItemsSource="{Binding PriorityElements}"
                   SelectedItem="{Binding Priority.Value}" />
         </StackPanel>
 
