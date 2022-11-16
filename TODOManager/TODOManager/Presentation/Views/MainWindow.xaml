@@ -21,7 +21,7 @@
             <ItemsControl ItemsSource="{Binding TodoItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:TodoItemCard  DataContext="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <local:TodoItemCard Item="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
