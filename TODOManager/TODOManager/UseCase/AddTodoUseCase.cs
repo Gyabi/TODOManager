@@ -19,13 +19,14 @@ namespace TODOManager.UseCase
             this.getProjByStrUseCase = getProjByStrUseCase;
         }
 
-        public TodoItem Execute(ObservableCollection<Project> projects, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
+        public void Execute(ObservableCollection<TodoItem> todoItems, ObservableCollection<Project> projects, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
         {
             Enum.TryParse<Priority>(priority, out Priority priorityEnum);
             Project newProject = this.getProjByStrUseCase.Execute(projects, project);
             ProjectID newProjectID = (newProject == null) ? projects[0].projectID : newProject.projectID;
             TodoItem addItem = new TodoItem(itemName, this.todoItemFactory.CreateTodoItemID(), newProjectID, useDeadLine, deadLine, priorityEnum, new Detail(detail), null, new List<TodoItem>());
-            return addItem;
+
+            todoItems.Add(addItem);
         }
     }
 }

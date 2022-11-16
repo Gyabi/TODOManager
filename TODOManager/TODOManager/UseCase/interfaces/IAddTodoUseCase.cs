@@ -10,6 +10,6 @@ namespace TODOManager.UseCase.interfaces
 {
     public interface IAddTodoUseCase
     {
-        public TodoItem Execute(ObservableCollection<Project> projects, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail);
+        public void Execute(ObservableCollection<TodoItem> todoItems, ObservableCollection<Project> projects, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail);
     }
 }

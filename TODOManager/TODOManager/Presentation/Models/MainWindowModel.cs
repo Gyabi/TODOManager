@@ -67,8 +67,7 @@ namespace TODOManager.Presentation.Models
         /// <param name="detail"></param>
         public void AddTodoItem(string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
         {
-            TodoItem addItem = this.addTodoUseCase.Execute(this.projects, itemName, project, useDeadLine, deadLine, priority, detail);
-            this.todoItems.Add(addItem);
+            this.addTodoUseCase.Execute(this.todoItems, this.projects, itemName, project, useDeadLine, deadLine, priority, detail);
         }
     }
 }
