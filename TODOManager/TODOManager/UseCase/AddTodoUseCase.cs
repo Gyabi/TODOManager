@@ -4,17 +4,19 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TODOManager.Domain.DomainModel;
 using TODOManager.Domain.DomainService.Factory;
+using TODOManager.UseCase.interfaces;
 
 namespace TODOManager.UseCase
 {
-    public class AddTodoUseCase
+    public class AddTodoUseCase : IAddTodoUseCase
     {
-        public GetProjByStrUseCase getProjByStrUseCase = new GetProjByStrUseCase();
+        public IGetProjByStrUseCase getProjByStrUseCase;
 
         private ITodoItemFactory todoItemFactory;
-        public AddTodoUseCase(ITodoItemFactory todoItemFactory)
+        public AddTodoUseCase(ITodoItemFactory todoItemFactory, IGetProjByStrUseCase getProjByStrUseCase)
         {
             this.todoItemFactory = todoItemFactory;
+            this.getProjByStrUseCase = getProjByStrUseCase;
         }
 
         public TodoItem Execute(ObservableCollection<Project> projects, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)

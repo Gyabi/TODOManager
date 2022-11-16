@@ -8,6 +8,8 @@ using TODOManager.Presentation.Models;
 using TODOManager.Presentation.ViewModels;
 using TODOManager.Presentation.ViewModels.interfaces;
 using TODOManager.Presentation.Views;
+using TODOManager.UseCase;
+using TODOManager.UseCase.interfaces;
 
 namespace TODOManager
 {
@@ -29,6 +31,10 @@ namespace TODOManager
             //Factory
             containerRegistry.RegisterSingleton<IProjectFactory, ProjectFactory>();
             containerRegistry.RegisterSingleton<ITodoItemFactory, TodoItemFactory>();
+
+            //UseCase
+            containerRegistry.Register(typeof(IAddTodoUseCase), typeof(AddTodoUseCase));
+            containerRegistry.Register(typeof(IGetProjByStrUseCase), typeof(GetProjByStrUseCase));
 
             //ポップアップの登録
             containerRegistry.RegisterDialog<AddTodoDialog, AddTodoDialogViewModel>();

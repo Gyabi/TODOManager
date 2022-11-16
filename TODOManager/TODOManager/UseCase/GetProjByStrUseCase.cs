@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TODOManager.Domain.DomainModel;
+using TODOManager.UseCase.interfaces;
 
 namespace TODOManager.UseCase
 {
-    public class GetProjByStrUseCase
+    public class GetProjByStrUseCase : IGetProjByStrUseCase
     {
         /// <summary>
         /// テキストからProjectを検索して返却

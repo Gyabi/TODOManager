@@ -30,7 +30,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        
+
                         <ListBoxItem Content="{Binding itemName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0"/>
                         <ListBoxItem Content="{Binding deadLine, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
                         <ListBoxItem Content="{Binding detail.detail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
@@ -38,13 +38,13 @@
                 </ListBox>
                 
                 <!--カード下部に子要素を格納-->
-                <ItemsControl ItemsSource="{Binding childItems}" Grid.Row="1">
+                <!--<ItemsControl ItemsSource="{Binding childItems}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <local:TodoItemCard  DataContext="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ItemsControl>-->
             </Grid>
 
         </materialDesignMahApps:Card>

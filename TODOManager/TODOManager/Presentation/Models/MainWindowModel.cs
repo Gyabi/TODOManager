@@ -14,6 +14,7 @@ using TODOManager.Presentation.ViewModels.interfaces;
 using Reactive.Bindings.Extensions;
 using TODOManager.UseCase;
 using Unity;
+using TODOManager.UseCase.interfaces;
 
 namespace TODOManager.Presentation.Models
 {
@@ -30,11 +31,13 @@ namespace TODOManager.Presentation.Models
         //プライオリティを示すリスト
         public ObservableCollection<Priority> priorities { get; set; }
 
-        [Dependency]
-        public AddTodoUseCase addTodoUseCase;
+        public IAddTodoUseCase addTodoUseCase;
 
-        public MainWindowModel()
+        public MainWindowModel(IAddTodoUseCase addTodoUseCase)
         {
+            //インジェクション
+            this.addTodoUseCase = addTodoUseCase;
+
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail"), null, new List<TodoItem>()) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
             
