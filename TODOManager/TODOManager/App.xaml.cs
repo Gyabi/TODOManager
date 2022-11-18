@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Unity;
 using System.Windows;
 using TODOManager.Domain.DomainService.Factory;
+using TODOManager.Helpers;
 using TODOManager.Infrastructure.Factory;
 using TODOManager.Presentation.Models;
 using TODOManager.Presentation.ViewModels;
@@ -34,8 +35,7 @@ namespace TODOManager
 
             //UseCase
             containerRegistry.Register(typeof(IAddTodoUseCase), typeof(AddTodoUseCase));
-            containerRegistry.Register(typeof(IGetProjByStrUseCase), typeof(GetProjByStrUseCase));
-
+            
             //ポップアップの登録
             containerRegistry.RegisterDialog<AddTodoDialog, AddTodoDialogViewModel>();
         }

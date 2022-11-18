@@ -38,13 +38,13 @@ namespace TODOManager.Presentation.Models
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
 
-            List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail"), null, new List<TodoItem>()) };
+            List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
             
             todoItems = new ObservableCollection<TodoItem>();
-            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.HIGH, detailSample, null, sample));
-            todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
-            todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail"), null, new List<TodoItem>()));
+            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.HIGH, detailSample));
+            todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail")));
+            todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail")));
 
             //プロジェクトを定義(本当はここでリポジトリから注入)
             this.projects = new ObservableCollection<Project>() { new Project("project1", new ProjectID("id1")), new Project("project2", new ProjectID("id2")) };

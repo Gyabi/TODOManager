@@ -12,7 +12,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Badge="{Binding priority}">
+    <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
         <materialDesignMahApps:Card HorizontalAlignment="Center" VerticalAlignment="Center">
             <!--カード全体のグリッド定義-->
             <Grid>
@@ -27,6 +27,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -34,18 +35,19 @@
                         </Grid.RowDefinitions>
                         <ListBoxItem Content="{Binding Item.itemName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="0"/>
                         <ListBoxItem Content="{Binding Item.deadLine, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="1"/>
-                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <ListBoxItem Content="{Binding Item.projectName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="2"/>
+                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
                     </Grid>
                 </ListBox>
                 
                 <!--カード下部に子要素を格納-->
-                <!--<ItemsControl ItemsSource="{Binding childItems}" Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:TodoItemCard  DataContext="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <local:TodoItemCard  Item="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
+                </ItemsControl>
             </Grid>
 
         </materialDesignMahApps:Card>

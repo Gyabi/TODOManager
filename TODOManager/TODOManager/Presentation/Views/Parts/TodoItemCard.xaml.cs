@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TODOManager.Domain.DomainModel;
+using TODOManager.Presentation.ViewModels.Contents;
 
 namespace TODOManager.Presentation.Views
 {
@@ -31,14 +31,14 @@ namespace TODOManager.Presentation.Views
         public static readonly DependencyProperty ItemProperty =
             DependencyProperty.Register(
                 nameof(Item), //プロパティ名
-                typeof(TodoItem), //バインドするデータの型
+                typeof(TodoItemVM), //バインドするデータの型
                 typeof(TodoItemCard), //自分自身の型
                 new PropertyMetadata(null) //初期値
         );
 
-        public TodoItem Item
+        public TodoItemVM Item
         {
-            get => (TodoItem)GetValue(ItemProperty);
+            get => (TodoItemVM)GetValue(ItemProperty);
             set => SetValue(ItemProperty, value);
         }
     }

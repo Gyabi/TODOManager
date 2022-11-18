@@ -15,6 +15,7 @@ using System.Reactive.Disposables;
 using Prism.Navigation;
 using System.Linq;
 using Prism.Services.Dialogs;
+using TODOManager.Presentation.ViewModels.Contents;
 
 namespace TODOManager.Presentation.ViewModels
 {
@@ -22,7 +23,7 @@ namespace TODOManager.Presentation.ViewModels
     {
         public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("TODO Manager");
 
-        public ReadOnlyReactiveCollection<TodoItem> TodoItems { get; }
+        public ReadOnlyReactiveCollection<TodoItemVM> TodoItems { get; }
         public ReactiveCommand AddCommend { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
@@ -38,7 +39,7 @@ namespace TODOManager.Presentation.ViewModels
             this.mainWindowModel = mainWindowModel;
             //todoアイテムを読みだす
             this.TodoItems = this.mainWindowModel.todoItems
-                .ToReadOnlyReactiveCollection()
+                .ToReadOnlyReactiveCollection(x => new TodoItemVM(x, this.mainWindowModel.projects))
                 .AddTo(this.disposables);
 
             this.AddCommend = new ReactiveCommand()

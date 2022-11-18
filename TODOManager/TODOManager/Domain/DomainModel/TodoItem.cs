@@ -45,17 +45,7 @@ namespace TODOManager.Domain.DomainModel
         /// </summary>
         public Detail detail { get; set; }
 
-        /// <summary>
-        /// 親アイテム
-        /// </summary>
-        public TodoItem pearentItem { get; set; }
-
-        /// <summary>
-        /// 子アイテムの配列
-        /// </summary>
-        public List<TodoItem> childItems { get; set; }
-
-        public TodoItem(string itemName, TodoItemID id,　ProjectID projectID, bool useDeadLine, DateTime deadLine, Priority priority, Detail detail, TodoItem pearentItem, List<TodoItem> childItems)
+        public TodoItem(string itemName, TodoItemID id,　ProjectID projectID, bool useDeadLine, DateTime deadLine, Priority priority, Detail detail)
         {
             this.itemName = itemName;
             this.id = id;
@@ -64,8 +54,6 @@ namespace TODOManager.Domain.DomainModel
             this.deadLine = deadLine;
             this.priority = priority;
             this.detail = detail;
-            this.pearentItem = pearentItem;
-            this.childItems = childItems;
         }
     }
 

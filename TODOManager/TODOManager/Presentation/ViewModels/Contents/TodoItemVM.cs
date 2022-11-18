@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TODOManager.Domain.DomainModel;
+using TODOManager.Helpers;
 
 namespace TODOManager.Presentation.ViewModels.Contents
 {
@@ -49,11 +50,11 @@ namespace TODOManager.Presentation.ViewModels.Contents
         /// <summary>
         /// 親アイテム
         /// </summary>
-        public TodoItem pearentItem { get; set; }
+        public TodoItemVM pearentItem { get; set; }
         /// <summary>
         /// 子アイテムの配列
         /// </summary>
-        public List<TodoItem> childItems { get; set; }
+        public List<TodoItemVM> childItems { get; set; }
 
         /// <summary>
         /// TodoItemからコンストラクタを起動する
@@ -65,12 +66,14 @@ namespace TODOManager.Presentation.ViewModels.Contents
             //入力されたtodoItemから各メンバを設定する
             this.itemName = todoItem.itemName;
             this.id = todoItem.id;
-
+            this.projectName = ProjectHelper.GetProjNameByID(projects, todoItem.projectID);
             this.projectID = todoItem.projectID;
+            this.useDeadLine = todoItem.useDeadLine;
+            this.deadLine = todoItem.deadLine;
+            this.priority = todoItem.priority;
 
             //detailを解析して親子関係を構築する
+            this.detail = todoItem.detail;
         }
-
-        //public string GetProjectNameById()
     }
 }
