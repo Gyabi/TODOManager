@@ -182,13 +182,13 @@ namespace TODOManager.Presentation.ViewModels.Contents
             //アクティブ状態を判定して処理
             if (this.titleData.data[this.titleData.data.Length-1] == activeFlag)
             {
-                this.isActive = true;
+                this.isActive = false;
                 //最後の判定文字は削除
                 this.titleData.data.Remove(this.titleData.data.Length - 1);
             }
             else
             {
-                this.isActive = false;
+                this.isActive = true;
             }
         }
 

@@ -109,6 +109,10 @@ namespace TODOManager.Presentation.ViewModels.Contents
         /// </summary>
         public int row { get; set; }
         /// <summary>
+        /// タスクのステータス
+        /// </summary>
+        public Status status { get; set; }
+        /// <summary>
         /// 親アイテム
         /// </summary>
         public TodoItemVM pearentItem { get; set; }
@@ -122,6 +126,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
             this.itemName = parseChild.titleData.data;
             this.detail = new Detail(parseChild.detail);
             this.row = parseChild.titleData.index;
+            this.status = parseChild.isActive ? Status.ACTIVE : Status.DONE;
             this.pearentItem = pearent;
 
             //子要素が存在するなら再帰的に生成
@@ -130,5 +135,11 @@ namespace TODOManager.Presentation.ViewModels.Contents
                 this.childItems.Add(new TodoItemChildVM(child, this.pearentItem));
             }
         }
+    }
+
+    public enum Status
+    {
+        ACTIVE,
+        DONE
     }
 }

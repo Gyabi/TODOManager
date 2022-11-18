@@ -13,7 +13,19 @@
     <!--d:DesignHeight="450" d:DesignWidth="800">-->
 
     <materialDesignMahApps:Card Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="auto">
-        <!--カード全体のグリッド定義-->
+        <!--カード全体のスタイルをステータスに応じて設定-->
+        <materialDesignMahApps:Card.Style>
+            <Style TargetType="{x:Type materialDesignMahApps:Card}">
+                <Style.Triggers>
+                    <!--DONE（enumで0）なら灰色にする-->
+                    <DataTrigger Binding="{Binding Item.status, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Value="1">
+                        <Setter Property="Background" Value="LightGray"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </materialDesignMahApps:Card.Style>
+           
+            <!--カード全体のグリッド定義-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
