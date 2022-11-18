@@ -15,6 +15,7 @@ using Reactive.Bindings.Extensions;
 using TODOManager.UseCase;
 using Unity;
 using TODOManager.UseCase.interfaces;
+using Prism.Mvvm;
 
 namespace TODOManager.Presentation.Models
 {
@@ -22,7 +23,7 @@ namespace TODOManager.Presentation.Models
     /// MainWindowに対するModelクラス
     /// ApplicationServise層へ処理を委託する
     /// </summary>
-    public class MainWindowModel : IMainWindowModel
+    public class MainWindowModel : BindableBase, IMainWindowModel
     {
         //Todoアイテムのリスト
         public ObservableCollection<TodoItem> todoItems { get; }
@@ -32,11 +33,13 @@ namespace TODOManager.Presentation.Models
         public ObservableCollection<Priority> priorities { get; set; }
 
         public IAddTodoUseCase addTodoUseCase;
+        public IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase; 
 
-        public MainWindowModel(IAddTodoUseCase addTodoUseCase)
+        public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
+            this.changeChildTodoStatusUseCase = changeChildTodoStatusUseCase;
 
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -68,6 +71,17 @@ namespace TODOManager.Presentation.Models
         public void AddTodoItem(string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
         {
             this.addTodoUseCase.Execute(this.todoItems, this.projects, itemName, project, useDeadLine, deadLine, priority, detail);
+        }
+
+        /// <summary>
+        /// 子要素のステータスを変更する
+        /// TODO：コレクションの状態変化通知の為にリストそのものを変更するようにしている
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="row"></param>
+        public void ChangeChildItemStatus(TodoItemID id, int row)
+        {
+            this.changeChildTodoStatusUseCase.Execute(this.todoItems, id, row);
         }
     }
 }

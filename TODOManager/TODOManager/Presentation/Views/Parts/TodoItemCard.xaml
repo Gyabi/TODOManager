@@ -16,7 +16,7 @@
     </UserControl.Resources>
         
 
-        <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
+        <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
         <materialDesignMahApps:Card HorizontalAlignment="Left" VerticalAlignment="Center" Background="Lavender" MinWidth="500">
             <!--カード全体のグリッド定義-->
             <Grid>
@@ -50,7 +50,7 @@
                 <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:TodoItemChildCard  Item="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <local:TodoItemChildCard  Item="{Binding }" DoneCommand="{Binding ChildDoneCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

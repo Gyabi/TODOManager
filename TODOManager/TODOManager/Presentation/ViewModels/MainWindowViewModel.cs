@@ -25,6 +25,7 @@ namespace TODOManager.Presentation.ViewModels
 
         public ReadOnlyReactiveCollection<TodoItemVM> TodoItems { get; }
         public ReactiveCommand AddCommend { get; }
+        public ReactiveCommand<TodoItemChildVM> DoneCommand { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
 
@@ -45,17 +46,27 @@ namespace TODOManager.Presentation.ViewModels
             this.AddCommend = new ReactiveCommand()
             .WithSubscribe(() => this.AddTodoItem());
 
+            this.DoneCommand = new ReactiveCommand<TodoItemChildVM>()
+                .WithSubscribe((TodoItemChildVM child) => this.DoneChildTodoItem(child));
+
             this.dialogService = dialogService;
         }
 
         /// <summary>
-        /// 本当は引数を取るようにしないと行けない
+        /// Todoを生成
         /// </summary>
         public void AddTodoItem()
         {
             this.dialogService.ShowDialog("AddTodoDialog", null, null);
         }
 
+        /// <summary>
+        /// 子タスクのステータスを変更する
+        /// </summary>
+        public void DoneChildTodoItem(TodoItemChildVM child)
+        {
+            this.mainWindowModel.ChangeChildItemStatus(child.pearentItem.id, child.row);
+        }
 
         public void Destroy()
         {

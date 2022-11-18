@@ -21,7 +21,8 @@
             <ItemsControl ItemsSource="{Binding TodoItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:TodoItemCard Item="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <!--listを展開しているところでVM実装のコマンドをバインドしないといけないときは以下のような記述になる-->
+                        <local:TodoItemCard Item="{Binding}" ChildDoneCommand="{Binding DataContext.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

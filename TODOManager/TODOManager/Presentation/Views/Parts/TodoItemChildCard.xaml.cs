@@ -36,10 +36,23 @@ namespace TODOManager.Presentation.Views
                 new PropertyMetadata(null) //初期値
         );
 
+        public static readonly DependencyProperty DoneCommandProperty =
+            DependencyProperty.Register(
+                nameof(DoneCommand), //プロパティ名
+                typeof(ICommand), //バインドするデータの型
+                typeof(TodoItemChildCard), //自分自身の型
+                new PropertyMetadata(null) //初期値
+        );
+
         public TodoItemChildVM Item
         {
             get => (TodoItemChildVM)GetValue(ItemProperty);
             set => SetValue(ItemProperty, value);
+        }
+        public ICommand DoneCommand
+        {
+            get => (ICommand)GetValue(DoneCommandProperty);
+            set => SetValue(DoneCommandProperty, value);
         }
     }
 }
