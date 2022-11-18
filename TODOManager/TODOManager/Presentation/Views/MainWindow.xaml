@@ -9,7 +9,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:local="clr-namespace:TODOManager.Presentation.Views"
-        Title="{Binding Title.Value}" Height="400" Width="600" GlowBrush="{DynamicResource AccentColorBrush}" >
+        Title="{Binding Title.Value}" Height="800" Width="600" GlowBrush="{DynamicResource AccentColorBrush}" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -28,9 +28,10 @@
         </ScrollViewer>
         
         <Button
-                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
                 Content="Add"
-                Command="{Binding AddCommend}" Grid.ColumnSpan="2" Margin="403,304,0,0" Width="84" />
+                Command="{Binding AddCommend}" Grid.ColumnSpan="2" Margin="20" Width="84" />
 
     </Grid>
 

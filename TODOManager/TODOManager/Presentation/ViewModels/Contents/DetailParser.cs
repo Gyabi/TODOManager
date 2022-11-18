@@ -29,6 +29,10 @@ namespace TODOManager.Presentation.ViewModels.Contents
             this.detail = detail;
         }
 
+        /// <summary>
+        /// 親子関係をもった解析済みインスタンスを返却する
+        /// </summary>
+        /// <returns></returns>
         public ParseRootData Execute()
         {
             //構文解析用親クラスを生成
@@ -83,6 +87,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
                     count = matches.Select(x => x.Value).Max().Length;
                 }
 
+                //パターンの文字列は削除しておく
                 this.parseDatas.Add(new ParseData(value, count, index));
             }
 
@@ -97,12 +102,13 @@ namespace TODOManager.Presentation.ViewModels.Contents
             //rootのdetailを特定
             bool flag = true;
             ParseData[] tmpParseDatas = this.parseDatas.ToArray();
+            List<string> detailDatas = new List<string>();
             foreach(ParseData parseData in tmpParseDatas)
             {
                 if(parseData.count == 0 && flag)
                 {
                     //改行を付けて追加
-                    this.detail += parseData.data + "\n";
+                    detailDatas.Add(parseData.data);
                     //リストからは削除
                     this.parseDatas.Remove(parseData);
                 }
@@ -111,6 +117,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
                     flag = false;
                 }
             }
+            if (detailDatas.Count != 0) this.detail = string.Join("\n", detailDatas);
 
             //子要素を生成する
             ParseData titleData = null;
@@ -197,12 +204,13 @@ namespace TODOManager.Presentation.ViewModels.Contents
             //detailを特定
             bool flag = true;
             ParseData[] tmpParseDatas = this.parseDatas.ToArray();
+            List<string> detailDatas = new List<string>();
             foreach (ParseData parseData in tmpParseDatas)
             {
                 if (parseData.count == 0 && flag)
                 {
                     //改行を付けて追加
-                    this.detail += parseData.data + "\n";
+                    detailDatas.Add(parseData.data);
                     //リストからは削除
                     this.parseDatas.Remove(parseData);
                 }
@@ -211,6 +219,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
                     flag = false;
                 }
             }
+            if (detailDatas.Count != 0) this.detail = string.Join("\n", detailDatas);
 
             //子要素を生成する
             ParseData titleData = null;

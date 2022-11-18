@@ -9,8 +9,8 @@
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" >
+    <!--d:DesignHeight="450" d:DesignWidth="800">-->
 
     <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
         <materialDesignMahApps:Card HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -44,7 +44,7 @@
                 <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:TodoItemCard  Item="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <local:TodoItemChildCard  Item="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

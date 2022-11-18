@@ -48,13 +48,9 @@ namespace TODOManager.Presentation.ViewModels.Contents
         /// </summary>
         public Detail detail { get; set; }
         /// <summary>
-        /// 親アイテム
-        /// </summary>
-        public TodoItemVM pearentItem { get; set; }
-        /// <summary>
         /// 子アイテムの配列
         /// </summary>
-        public List<TodoItemVM> childItems { get; set; }
+        public List<TodoItemChildVM> childItems { get; set; }
 
         /// <summary>
         /// TodoItemからコンストラクタを起動する
@@ -73,7 +69,66 @@ namespace TODOManager.Presentation.ViewModels.Contents
             this.priority = todoItem.priority;
 
             //detailを解析して親子関係を構築する
-            this.detail = todoItem.detail;
+            //this.detail = todoItem.detail;
+            DetailParser detailParser = new DetailParser(todoItem.detail.detail);
+            ParseRootData root = detailParser.Execute();
+
+            this.detail = new Detail(root.detail);
+            this.childItems = GenerateChildren(root.childs);
+        }
+
+        /// <summary>
+        /// 解析済みの子要素を入力しVMに反映させて返却する
+        /// </summary>
+        /// <param name="ParseChilds"></param>
+        /// <returns></returns>
+        public List<TodoItemChildVM> GenerateChildren(List<ParseChildData> ParseChilds)
+        {
+            List<TodoItemChildVM> outData = new List<TodoItemChildVM>();
+            foreach(ParseChildData child in ParseChilds)
+            {
+                outData.Add(new TodoItemChildVM(child, this));
+            }
+
+            return outData;
+        }
+    }
+
+    public class TodoItemChildVM
+    {
+        /// <summary>
+        /// Todoのアイテム名
+        /// </summary>
+        public string itemName { get; set; }
+        /// <summary>
+        /// 詳細
+        /// </summary>
+        public Detail detail { get; set; }
+        /// <summary>
+        /// 対応する親detailのテキスト行数
+        /// </summary>
+        public int row { get; set; }
+        /// <summary>
+        /// 親アイテム
+        /// </summary>
+        public TodoItemVM pearentItem { get; set; }
+        /// <summary>
+        /// 子アイテムの配列
+        /// </summary>
+        public List<TodoItemChildVM> childItems { get; set; } = new List<TodoItemChildVM>();
+
+        public TodoItemChildVM(ParseChildData parseChild, TodoItemVM pearent)
+        {
+            this.itemName = parseChild.titleData.data;
+            this.detail = new Detail(parseChild.detail);
+            this.row = parseChild.titleData.index;
+            this.pearentItem = pearent;
+
+            //子要素が存在するなら再帰的に生成
+            foreach(ParseChildData child in parseChild.childs)
+            {
+                this.childItems.Add(new TodoItemChildVM(child, this.pearentItem));
+            }
         }
     }
 }
