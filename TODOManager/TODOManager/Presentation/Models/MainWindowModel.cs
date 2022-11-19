@@ -33,13 +33,15 @@ namespace TODOManager.Presentation.Models
         public ObservableCollection<Priority> priorities { get; set; }
 
         public IAddTodoUseCase addTodoUseCase;
-        public IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase; 
+        public IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase;
+        public IDeleteTodoUseCase deleteTodoUseCase;
 
-        public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase)
+        public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
             this.changeChildTodoStatusUseCase = changeChildTodoStatusUseCase;
+            this.deleteTodoUseCase = deleteTodoUseCase;
 
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -83,5 +85,15 @@ namespace TODOManager.Presentation.Models
         {
             this.changeChildTodoStatusUseCase.Execute(this.todoItems, id, row);
         }
+
+        /// <summary>
+        /// アイテムを削除する
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteTodoItem(TodoItemID id)
+        {
+            this.deleteTodoUseCase.Execute(this.todoItems, id);
+        }
+
     }
 }

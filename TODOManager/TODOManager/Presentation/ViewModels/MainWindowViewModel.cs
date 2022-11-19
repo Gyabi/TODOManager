@@ -16,6 +16,7 @@ using Prism.Navigation;
 using System.Linq;
 using Prism.Services.Dialogs;
 using TODOManager.Presentation.ViewModels.Contents;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TODOManager.Presentation.ViewModels
 {
@@ -26,6 +27,7 @@ namespace TODOManager.Presentation.ViewModels
         public ReadOnlyReactiveCollection<TodoItemVM> TodoItems { get; }
         public ReactiveCommand AddCommend { get; }
         public ReactiveCommand<TodoItemChildVM> DoneCommand { get; }
+        public ReactiveCommand<TodoItemVM> DeleteCommand { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
 
@@ -44,10 +46,13 @@ namespace TODOManager.Presentation.ViewModels
                 .AddTo(this.disposables);
 
             this.AddCommend = new ReactiveCommand()
-            .WithSubscribe(() => this.AddTodoItem());
+                .WithSubscribe(() => this.AddTodoItem());
 
             this.DoneCommand = new ReactiveCommand<TodoItemChildVM>()
                 .WithSubscribe((TodoItemChildVM child) => this.DoneChildTodoItem(child));
+
+            this.DeleteCommand = new ReactiveCommand<TodoItemVM>()
+                .WithSubscribe((TodoItemVM item) => this.DeleteTodoItem(item));
 
             this.dialogService = dialogService;
         }
@@ -66,6 +71,15 @@ namespace TODOManager.Presentation.ViewModels
         public void DoneChildTodoItem(TodoItemChildVM child)
         {
             this.mainWindowModel.ChangeChildItemStatus(child.pearentItem.id, child.row);
+        }
+
+        /// <summary>
+        /// アイテムを削除する
+        /// </summary>
+        /// <param name="item"></param>
+        public void DeleteTodoItem(TodoItemVM item)
+        {
+            this.mainWindowModel.DeleteTodoItem(item.id);
         }
 
         public void Destroy()

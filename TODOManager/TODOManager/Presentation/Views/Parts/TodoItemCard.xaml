@@ -14,10 +14,10 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter" />
     </UserControl.Resources>
-        
 
-        <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
-        <materialDesignMahApps:Card HorizontalAlignment="Left" VerticalAlignment="Center" Background="Lavender" MinWidth="500">
+
+    <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
+        <materialDesignMahApps:Card HorizontalAlignment="Left" VerticalAlignment="Center" Background="Lavender">
             <!--カード全体のグリッド定義-->
             <Grid>
                 <Grid.RowDefinitions>
@@ -25,10 +25,11 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!--カード上部に現在の情報を格納-->
-                <ListBox Grid.Row="0">
+                <ListBox Grid.Row="0" Width="auto">
                     <!--現在の情報を表示する為のグリッド-->
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -37,15 +38,23 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        
+
                         <ListBoxItem Content="{Binding Item.itemName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="0"/>
                         <ListBoxItem Content="{Binding Item.deadLine, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="1"
                                      Visibility="{Binding Item.useDeadLine, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <ListBoxItem Content="{Binding Item.projectName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="2"/>
-                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <!--削除ボタン-->
+                        <ListBoxItem Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right">
+                            <Button Command="{Binding DeleteCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" Width="40" Cursor="Hand"
+                                    />
+                        </ListBoxItem>
+
+                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"/>
                     </Grid>
                 </ListBox>
-                
+
                 <!--カード下部に子要素を格納-->
                 <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>

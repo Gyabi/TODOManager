@@ -22,7 +22,13 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!--listを展開しているところでVM実装のコマンドをバインドしないといけないときは以下のような記述になる-->
-                        <local:TodoItemCard Item="{Binding}" ChildDoneCommand="{Binding DataContext.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <local:TodoItemCard Item="{Binding}"
+                                            ChildDoneCommand="{Binding DataContext.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}"
+                                            DeleteCommand="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}"
+                                            HorizontalAlignment="Stretch" 
+                                            VerticalAlignment="Top"
+                                            Margin="0,0,20,0"
+                                            />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
