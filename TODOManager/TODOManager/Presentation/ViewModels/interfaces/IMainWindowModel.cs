@@ -23,5 +23,8 @@ namespace TODOManager.Presentation.ViewModels.interfaces
         public void SortTodoItem(int from, int to);
         public TodoItem GetTodoItemData(TodoItemID id);
         public void EditTodoItem(TodoItemID targetID, string itemName, string projectID, bool useDeadLine, DateTime deadLine, string priority, string detail);
+
+        public void DeleteProject(string projectName);
+        public void AddProject(string projectName);
     }
 }

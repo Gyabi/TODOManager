@@ -11,16 +11,24 @@
         xmlns:local="clr-namespace:TODOManager.Presentation.Views"
         xmlns:b="clr-namespace:TODOManager.Presentation.Views.Behaviors"
         Title="{Binding Title.Value}" Height="800" Width="600" GlowBrush="{DynamicResource AccentColorBrush}" >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Setting">
+                <MenuItem Header="Project" Command="{Binding EditProjectCommand}"/>
+            </MenuItem>
+        </Menu>
 
-
-        <!--リストでタスクを表示-->
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Column="0">
+        <DockPanel>
+            <Button
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Content="Add"
+                    Command="{Binding AddCommend}"  Margin="20" Width="84" Cursor="Hand"
+                    DockPanel.Dock="Bottom"/>
+            <!--リストでタスクを表示-->
             <!--DDで並び替えをできるようにビヘイビアの内容（ b:ReorderableItemsControlBehavior.CallbackとAllowDrop）を追加している-->
-            <ListBox ItemsSource="{Binding TodoItems}" SelectedIndex="{Binding CurrentIndex.Value}" b:ReorderableItemsControlBehavior.Callback="{Binding DropCallback}" AllowDrop="True">
+            <ListBox ItemsSource="{Binding TodoItems}" DockPanel.Dock="Top"
+                        SelectedIndex="{Binding CurrentIndex.Value}" b:ReorderableItemsControlBehavior.Callback="{Binding DropCallback}" AllowDrop="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <!--listを展開しているところでVM実装のコマンドをバインドしないといけないときは以下のような記述になる-->
@@ -35,14 +43,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </ScrollViewer>
-        
-        <Button
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Right"
-                Content="Add"
-                Command="{Binding AddCommend}" Grid.ColumnSpan="2" Margin="20" Width="84" />
-
-    </Grid>
+        </DockPanel>
+    </DockPanel>
 
 </mah:MetroWindow>

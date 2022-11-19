@@ -27,7 +27,7 @@ namespace TODOManager.UseCase
             TodoItem editedItem = new TodoItem(
                     itemName,
                     targetID,
-                    todoItems[index].projectID,
+                    newProjectID,
                     useDeadLine,
                     deadLine,
                     priorityEnum,

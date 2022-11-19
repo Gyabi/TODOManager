@@ -17,6 +17,7 @@ using Unity;
 using TODOManager.UseCase.interfaces;
 using Prism.Mvvm;
 using TODOManager.Helpers;
+using System.Security.RightsManagement;
 
 namespace TODOManager.Presentation.Models
 {
@@ -38,9 +39,12 @@ namespace TODOManager.Presentation.Models
         public IDeleteTodoUseCase deleteTodoUseCase;
         public ISortTodoUseCase sortTodoUseCase;
         public IEditTodoUseCase editTodoUseCase;
+        public IDeleteProjectUseCase deleteProjectUseCase;
+        public IAddProjectUseCase addProjectUseCase;
 
         public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase,
-            ISortTodoUseCase sortTodoUseCase, IEditTodoUseCase editTodoUseCase)
+            ISortTodoUseCase sortTodoUseCase, IEditTodoUseCase editTodoUseCase,
+            IDeleteProjectUseCase deleteProjectUseCase, IAddProjectUseCase addProjectUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
@@ -48,6 +52,8 @@ namespace TODOManager.Presentation.Models
             this.deleteTodoUseCase = deleteTodoUseCase;
             this.sortTodoUseCase = sortTodoUseCase;
             this.editTodoUseCase = editTodoUseCase;
+            this.deleteProjectUseCase = deleteProjectUseCase;
+            this.addProjectUseCase = addProjectUseCase;
 
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -135,5 +141,13 @@ namespace TODOManager.Presentation.Models
             this.editTodoUseCase.Execute(targetID, this.todoItems, this.projects ,itemName, project, useDeadLine, deadLine, priority, detail);
         }
 
+        public void DeleteProject(string projectName)
+        {
+            this.deleteProjectUseCase.Execute(this.projects, projectName);
+        }
+        public void AddProject(string projectName)
+        {
+            this.addProjectUseCase.Execute(this.projects, projectName);
+        }
     }
 }

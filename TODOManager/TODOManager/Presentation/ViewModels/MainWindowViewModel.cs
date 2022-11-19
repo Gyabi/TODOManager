@@ -16,7 +16,6 @@ using Prism.Navigation;
 using System.Linq;
 using Prism.Services.Dialogs;
 using TODOManager.Presentation.ViewModels.Contents;
-using System.Security.Cryptography.X509Certificates;
 
 namespace TODOManager.Presentation.ViewModels
 {
@@ -29,6 +28,7 @@ namespace TODOManager.Presentation.ViewModels
         public ReactiveCommand<TodoItemChildVM> DoneCommand { get; }
         public ReactiveCommand<TodoItemVM> DeleteCommand { get; }
         public ReactiveCommand<TodoItemVM> EditCommand { get; }
+        public ReactiveCommand EditProjectCommand { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
 
@@ -63,6 +63,10 @@ namespace TODOManager.Presentation.ViewModels
 
             this.EditCommand = new ReactiveCommand<TodoItemVM>()
                 .WithSubscribe((TodoItemVM item) => this.EditTodoItem(item))
+                .AddTo(this.disposables);
+
+            this.EditProjectCommand = new ReactiveCommand()
+                .WithSubscribe(() => this.EditProjects())
                 .AddTo(this.disposables);
 
             this.dialogService = dialogService;
@@ -111,6 +115,14 @@ namespace TODOManager.Presentation.ViewModels
         public void OnDrop(int index)
         {
             this.mainWindowModel.SortTodoItem(this.CurrentIndex.Value, index);
+        }
+
+        /// <summary>
+        /// プロジェクトの設定画面を表示する
+        /// </summary>
+        public void EditProjects()
+        {
+            this.dialogService.ShowDialog("EditProjectDialog", null, null);
         }
 
         public void Destroy()
