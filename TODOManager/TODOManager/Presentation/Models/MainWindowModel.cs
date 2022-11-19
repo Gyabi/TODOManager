@@ -35,13 +35,16 @@ namespace TODOManager.Presentation.Models
         public IAddTodoUseCase addTodoUseCase;
         public IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase;
         public IDeleteTodoUseCase deleteTodoUseCase;
+        public ISortTodoUseCase sortTodoUseCase;
 
-        public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase)
+        public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase,
+            ISortTodoUseCase sortTodoUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
             this.changeChildTodoStatusUseCase = changeChildTodoStatusUseCase;
             this.deleteTodoUseCase = deleteTodoUseCase;
+            this.sortTodoUseCase = sortTodoUseCase;
 
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -95,5 +98,14 @@ namespace TODOManager.Presentation.Models
             this.deleteTodoUseCase.Execute(this.todoItems, id);
         }
 
+        /// <summary>
+        /// 並べ変えを行う
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        public void SortTodoItem(int from, int to)
+        {
+            this.sortTodoUseCase.Execute(this.todoItems, from, to);
+        }
     }
 }

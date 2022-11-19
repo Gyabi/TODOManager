@@ -46,10 +46,12 @@
                     <ListBoxItem Content="{Binding Item.itemName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Grid.Row="0" Grid.Column="0"/>
                     <Button Command="{Binding DoneCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}"
                             Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
-                            Content="Done"
                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                            CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}"/>
-                    <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}"
+                            >
+                        <materialDesignMahApps:PackIcon Kind="Check"></materialDesignMahApps:PackIcon>
+                    </Button>
+                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
                 </Grid>
             </ListBox>
                 

@@ -36,6 +36,9 @@ namespace TODOManager.Presentation.ViewModels
 
         private CompositeDisposable disposables = new CompositeDisposable();
 
+        //D＆Dのビヘイビア用
+        public Action<int> DropCallback { get { return OnDrop; } }
+        public ReactiveProperty<int> CurrentIndex { get; set; } = new ReactiveProperty<int>(0);
 
         public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogService dialogService)
         {
@@ -80,6 +83,15 @@ namespace TODOManager.Presentation.ViewModels
         public void DeleteTodoItem(TodoItemVM item)
         {
             this.mainWindowModel.DeleteTodoItem(item.id);
+        }
+
+        /// <summary>
+        /// D&Dの動作を記述する
+        /// </summary>
+        /// <param name="index">移動先の番号</param>
+        public void OnDrop(int index)
+        {
+            this.mainWindowModel.SortTodoItem(this.CurrentIndex.Value, index);
         }
 
         public void Destroy()

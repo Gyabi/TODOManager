@@ -1,4 +1,5 @@
-﻿using Reactive.Bindings;
+﻿using Prism.Services.Dialogs;
+using Reactive.Bindings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace TODOManager.Presentation.Views
     /// </summary>
     public partial class TodoItemCard : UserControl
     {
+        //削除の確認ポップアップ表示用
+        //private IDialogService dialogService;
+
         public TodoItemCard()
         {
             InitializeComponent();

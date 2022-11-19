@@ -47,8 +47,12 @@
                         <ListBoxItem Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right">
                             <Button Command="{Binding DeleteCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" Width="40" Cursor="Hand"
-                                    />
+                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" Cursor="Hand"
+                                    Height="30"
+                                    Width="30"
+                                    >
+                                <materialDesignMahApps:PackIcon Kind="Garbage"></materialDesignMahApps:PackIcon>
+                            </Button>
                         </ListBoxItem>
 
                         <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"/>
