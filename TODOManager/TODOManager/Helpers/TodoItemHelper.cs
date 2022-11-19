@@ -19,5 +19,15 @@ namespace TODOManager.Helpers
 
             throw new CannotUnloadAppDomainException();
         }
+
+        public static TodoItem GetTodoByID(List<TodoItem> todoItems, TodoItemID id)
+        {
+            foreach (var value in todoItems)
+            {
+                if (value.id == id) return value;
+            }
+
+            throw new CannotUnloadAppDomainException();
+        }
     }
 }

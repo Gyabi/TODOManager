@@ -16,6 +16,7 @@ using TODOManager.UseCase;
 using Unity;
 using TODOManager.UseCase.interfaces;
 using Prism.Mvvm;
+using TODOManager.Helpers;
 
 namespace TODOManager.Presentation.Models
 {
@@ -36,15 +37,17 @@ namespace TODOManager.Presentation.Models
         public IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase;
         public IDeleteTodoUseCase deleteTodoUseCase;
         public ISortTodoUseCase sortTodoUseCase;
+        public IEditTodoUseCase editTodoUseCase;
 
         public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase,
-            ISortTodoUseCase sortTodoUseCase)
+            ISortTodoUseCase sortTodoUseCase, IEditTodoUseCase editTodoUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
             this.changeChildTodoStatusUseCase = changeChildTodoStatusUseCase;
             this.deleteTodoUseCase = deleteTodoUseCase;
             this.sortTodoUseCase = sortTodoUseCase;
+            this.editTodoUseCase = editTodoUseCase;
 
             List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
             Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
@@ -107,5 +110,30 @@ namespace TODOManager.Presentation.Models
         {
             this.sortTodoUseCase.Execute(this.todoItems, from, to);
         }
+        /// <summary>
+        /// IDからデータを読みだす
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public TodoItem GetTodoItemData(TodoItemID id)
+        {
+            return TodoItemHelper.GetTodoByID(this.todoItems.ToList(), id);
+        }
+
+        /// <summary>
+        /// アイテムを編集する
+        /// </summary>
+        /// <param name="targetID"></param>
+        /// <param name="itemName"></param>
+        /// <param name="projectID"></param>
+        /// <param name="useDeadLine"></param>
+        /// <param name="deadLine"></param>
+        /// <param name="priority"></param>
+        /// <param name="detail"></param>
+        public void EditTodoItem(TodoItemID targetID, string itemName, string project, bool useDeadLine, DateTime deadLine, string priority, string detail)
+        {
+            this.editTodoUseCase.Execute(targetID, this.todoItems, this.projects ,itemName, project, useDeadLine, deadLine, priority, detail);
+        }
+
     }
 }

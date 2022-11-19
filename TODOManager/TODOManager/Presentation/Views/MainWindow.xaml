@@ -27,6 +27,7 @@
                         <local:TodoItemCard Item="{Binding}"
                                             ChildDoneCommand="{Binding DataContext.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}"
                                             DeleteCommand="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}"
+                                            EditCommand="{Binding DataContext.EditCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}"
                                             HorizontalAlignment="Stretch" 
                                             VerticalAlignment="Top"
                                             Margin="20,0,20,0"

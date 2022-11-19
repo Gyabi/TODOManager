@@ -28,6 +28,7 @@ namespace TODOManager.Presentation.ViewModels
         public ReactiveCommand AddCommend { get; }
         public ReactiveCommand<TodoItemChildVM> DoneCommand { get; }
         public ReactiveCommand<TodoItemVM> DeleteCommand { get; }
+        public ReactiveCommand<TodoItemVM> EditCommand { get; }
 
         public IMainWindowModel mainWindowModel { get; set; }
 
@@ -49,13 +50,20 @@ namespace TODOManager.Presentation.ViewModels
                 .AddTo(this.disposables);
 
             this.AddCommend = new ReactiveCommand()
-                .WithSubscribe(() => this.AddTodoItem());
+                .WithSubscribe(() => this.AddTodoItem())
+                .AddTo(this.disposables);
 
             this.DoneCommand = new ReactiveCommand<TodoItemChildVM>()
-                .WithSubscribe((TodoItemChildVM child) => this.DoneChildTodoItem(child));
+                .WithSubscribe((TodoItemChildVM child) => this.DoneChildTodoItem(child))
+                .AddTo(this.disposables);
 
             this.DeleteCommand = new ReactiveCommand<TodoItemVM>()
-                .WithSubscribe((TodoItemVM item) => this.DeleteTodoItem(item));
+                .WithSubscribe((TodoItemVM item) => this.DeleteTodoItem(item))
+                .AddTo(this.disposables);
+
+            this.EditCommand = new ReactiveCommand<TodoItemVM>()
+                .WithSubscribe((TodoItemVM item) => this.EditTodoItem(item))
+                .AddTo(this.disposables);
 
             this.dialogService = dialogService;
         }
@@ -83,6 +91,17 @@ namespace TODOManager.Presentation.ViewModels
         public void DeleteTodoItem(TodoItemVM item)
         {
             this.mainWindowModel.DeleteTodoItem(item.id);
+        }
+
+        /// <summary>
+        /// アイテムを編集する
+        /// </summary>
+        /// <param name="item"></param>
+        public void EditTodoItem(TodoItemVM item)
+        {
+            IDialogParameters param = new DialogParameters();
+            param.Add("targetID", item.id);
+            this.dialogService.ShowDialog("EditTodoDialog", param, null);
         }
 
         /// <summary>

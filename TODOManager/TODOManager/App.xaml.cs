@@ -38,9 +38,11 @@ namespace TODOManager
             containerRegistry.Register(typeof(IDeleteTodoUseCase), typeof(DeleteTodoUseCase));
             containerRegistry.Register(typeof(IChangeChildTodoStatusUseCase), typeof(ChangeChildTodoStatusUseCase));
             containerRegistry.Register(typeof(ISortTodoUseCase), typeof(SortTodoUseCase));
+            containerRegistry.Register(typeof(IEditTodoUseCase), typeof(EditTodoUseCase));
 
             //ポップアップの登録
             containerRegistry.RegisterDialog<AddTodoDialog, AddTodoDialogViewModel>();
+            containerRegistry.RegisterDialog<EditTodoDialog, EditTodoDialogViewModel>();
         }
 
         protected override void ConfigureViewModelLocator()

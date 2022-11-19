@@ -36,15 +36,14 @@ namespace TODOManager.Helpers
         public static string GetProjNameByID(ObservableCollection<Project> projects, ProjectID projectID)
         {
             string projectName = string.Empty;
-            foreach(Project _project in projects)
+            foreach (Project _project in projects)
             {
-                if(_project.projectID == projectID)
+                if (_project.projectID == projectID)
                 {
                     projectName = _project.projectName;
                 }
             }
             return projectName;
         }
-
     }
 }

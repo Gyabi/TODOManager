@@ -47,6 +47,14 @@ namespace TODOManager.Presentation.Views
                 typeof(TodoItemCard), //自分自身の型
                 new PropertyMetadata(null) //初期値
         );
+        //編集コマンド
+        public static readonly DependencyProperty EditCommandProperty =
+            DependencyProperty.Register(
+                nameof(EditCommand), //プロパティ名
+                typeof(ICommand), //バインドするデータの型
+                typeof(TodoItemCard), //自分自身の型
+                new PropertyMetadata(null) //初期値
+        );
         //子要素のカードに渡すコマンド
         public static readonly DependencyProperty ChildDoneCommandProperty =
             DependencyProperty.Register(
@@ -70,6 +78,11 @@ namespace TODOManager.Presentation.Views
         {
             get => (ICommand)GetValue(DeleteCommandProperty);
             set => SetValue(DeleteCommandProperty, value);
+        }
+        public ICommand EditCommand
+        {
+            get => (ICommand)GetValue(EditCommandProperty);
+            set => SetValue(EditCommandProperty, value);
         }
     }
 }
