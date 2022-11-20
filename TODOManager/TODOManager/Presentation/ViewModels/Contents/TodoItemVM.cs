@@ -38,7 +38,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
         /// <summary>
         /// 期限
         /// </summary>
-        public DateTime deadLine { get; set; }
+        public string deadLine { get; set; }
         /// <summary>
         /// 優先度
         /// </summary>
@@ -65,7 +65,7 @@ namespace TODOManager.Presentation.ViewModels.Contents
             this.projectName = ProjectHelper.GetProjNameByID(projects, todoItem.projectID);
             this.projectID = todoItem.projectID;
             this.useDeadLine = todoItem.useDeadLine;
-            this.deadLine = todoItem.deadLine;
+            this.deadLine = todoItem.deadLine.ToShortDateString();
             this.priority = todoItem.priority;
 
             //detailを解析して親子関係を構築する
