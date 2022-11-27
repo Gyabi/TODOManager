@@ -41,10 +41,13 @@ namespace TODOManager.Presentation.Models
         public IEditTodoUseCase editTodoUseCase;
         public IDeleteProjectUseCase deleteProjectUseCase;
         public IAddProjectUseCase addProjectUseCase;
+        public IReadTodoUseCase readTodoUseCase;
+        public IReadProjectUseCase readProjectUseCase;
 
         public MainWindowModel(IAddTodoUseCase addTodoUseCase, IChangeChildTodoStatusUseCase changeChildTodoStatusUseCase, IDeleteTodoUseCase deleteTodoUseCase,
             ISortTodoUseCase sortTodoUseCase, IEditTodoUseCase editTodoUseCase,
-            IDeleteProjectUseCase deleteProjectUseCase, IAddProjectUseCase addProjectUseCase)
+            IDeleteProjectUseCase deleteProjectUseCase, IAddProjectUseCase addProjectUseCase,
+            IReadTodoUseCase readTodoUseCase, IReadProjectUseCase readProjectUseCase)
         {
             //インジェクション
             this.addTodoUseCase = addTodoUseCase;
@@ -54,17 +57,15 @@ namespace TODOManager.Presentation.Models
             this.editTodoUseCase = editTodoUseCase;
             this.deleteProjectUseCase = deleteProjectUseCase;
             this.addProjectUseCase = addProjectUseCase;
+            this.readTodoUseCase = readTodoUseCase;
+            this.readProjectUseCase = readProjectUseCase;
 
-            List<TodoItem> sample = new List<TodoItem>() { new TodoItem("child", new TodoItemID("itemid"), new ProjectID("projectid"), true, DateTime.Now, Priority.NONE, new Detail("detail")) };
-            Detail detailSample = new Detail("testtesttesttesttesttesttesttesttesttesttest\ntestestsetestsetest");
-            
-            todoItems = new ObservableCollection<TodoItem>();
-            todoItems.Add(new TodoItem("test1", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.HIGH, detailSample));
-            todoItems.Add(new TodoItem("test2", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail\ntest\n>aaaaaaaaa")));
-            todoItems.Add(new TodoItem("test3", new TodoItemID("itemid"), new ProjectID("projectid"),true, DateTime.Now, Priority.MEDIUM, new Detail("detail")));
+            //保存済みデータを読み出し
+            this.todoItems = this.readTodoUseCase.Execute();
 
-            //プロジェクトを定義(本当はここでリポジトリから注入)
-            this.projects = new ObservableCollection<Project>() { new Project("project1", new ProjectID("id1")), new Project("project2", new ProjectID("id2")) };
+            //プロジェクトを読み出し
+            this.projects = this.readProjectUseCase.Execute();
+
             //プライオリティを定義
             this.priorities = new ObservableCollection<Priority>();
             foreach(Priority priority in Enum.GetValues(typeof(Priority)))
