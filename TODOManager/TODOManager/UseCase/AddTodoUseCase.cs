@@ -22,7 +22,8 @@ namespace TODOManager.UseCase
         {
             Enum.TryParse<Priority>(priority, out Priority priorityEnum);
             Project newProject = ProjectHelper.GetProjByStr(projects, project);
-            ProjectID newProjectID = (newProject == null) ? projects[0].projectID : newProject.projectID;
+            ProjectID newProjectID = (newProject == null) ? null : newProject.projectID;
+            //ProjectID newProjectID = (newProject == null) ? projects[0].projectID : newProject.projectID;
             TodoItem addItem = new TodoItem(itemName, this.todoItemFactory.CreateTodoItemID(), newProjectID, useDeadLine, deadLine, priorityEnum, new Detail(detail));
 
             todoItems.Add(addItem);
