@@ -10,5 +10,7 @@ namespace TODOManager.Domain.DomainService.Repository
     public interface IProjectRepository
     {
         public List<Project> ReadProjects();
+        public void InsertData(string id, string name);
+        public void DeleteData(string id);
     }
 }

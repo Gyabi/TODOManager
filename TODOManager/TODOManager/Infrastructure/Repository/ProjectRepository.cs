@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using TODOManager.Domain.DomainModel;
 using TODOManager.Domain.DomainService.Repository;
 
@@ -17,12 +18,35 @@ namespace TODOManager.Infrastructure.Repository
         {
             //テーブル作成
             this.CreateTable();
+            //データ取得
+            List<List<string>> datas = SqliteController.ReadAllData("PROJECTS");
+            //データ変換して返却
+            List<Project> outdata = new List<Project>();
+            foreach(List<string> data in datas)
+            {
+                outdata.Add(new Project(data[1], new ProjectID(data[0])));
+            }
 
-            InsertData("001", "test1");
+            return outdata;
+        }
 
-            SqliteController.SerachRecordData();
+        public void InsertData(string id, string name)
+        {
+            string[] fieldDatas = new string[] { "ID", ", NAME" };
+            string[] insertDatas = new string[] { $"'{id}'", $", '{name}'" };
+            SqliteController.InsertData("PROJECTS", fieldDatas, insertDatas);
+        }
 
-            return new List<Project>() { new Project("project1", new ProjectID("id1")), new Project("project2", new ProjectID("id2")) };
+        public void DeleteData(string id)
+        {
+            SqliteController.DeleteData("PROJECTS", id);
+        }
+
+
+        public void DeleteAllData()
+        {
+            var query = "DELETE FROM PROJECTS";
+            SqliteController.ExeQuery(query);
         }
         public void CreateTable()
         {
@@ -34,15 +58,6 @@ namespace TODOManager.Infrastructure.Repository
             };
             //テーブル作成
             SqliteController.CreateTable("PROJECTS", queryStrings);
-        }
-
-        public void InsertData(string id, string name)
-        {
-            //var query = "DELETE FROM PROJECTS";
-            var query = "INSERT INTO PROJECTS (ID, NAME) VALUES ('id1', 'name')";
-            //        var query = "INSERT INTO PROJECTS (ID, NAME) VALUES (" +
-            //$"{id}, {name})";
-            SqliteController.ExeQuery(query);
         }
     }
 }
