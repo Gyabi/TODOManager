@@ -38,7 +38,7 @@ namespace TODOManager.Helpers
             string projectName = string.Empty;
             foreach (Project _project in projects)
             {
-                if (_project.projectID == projectID)
+                if (_project.projectID.id == projectID.id)
                 {
                     projectName = _project.projectName;
                 }

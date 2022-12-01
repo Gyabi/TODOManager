@@ -3,7 +3,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>communication_assistance_help_support_service_information_icon_230472.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="communication_assistance_help_support_service_information_icon_230472.ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.5" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />

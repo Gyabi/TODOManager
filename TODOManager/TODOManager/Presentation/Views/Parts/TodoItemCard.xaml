@@ -17,22 +17,28 @@
 
 
     <materialDesignMahApps:Badged Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Badge="{Binding Item.priority, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}">
-        <materialDesignMahApps:Card HorizontalAlignment="Left" VerticalAlignment="Center" Background="Lavender">
+        <materialDesignMahApps:Card HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Lavender" >
             <!--カード全体のグリッド定義-->
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!--カード上部に現在の情報を格納-->
-                <ListBox Grid.Row="0" Width="auto">
+                <ListBox Grid.Row="0" Width="auto" Grid.ColumnSpan="3">
                     <!--現在の情報を表示する為のグリッド-->
-                    <Grid>
+                    <Grid >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="22*"/>
+
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -46,33 +52,33 @@
                         <ListBoxItem Content="{Binding Item.projectName, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="0" Grid.Column="2"/>
                         <!--削除ボタン-->
                         <ListBoxItem Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right">
-                            <Button Command="{Binding DeleteCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" Cursor="Hand"
-                                    Height="30"
-                                    Width="30"
+                            <Button Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                CommandParameter="{Binding Item, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Cursor="Hand"
+                                Height="30"
+                                Width="30"
                                     >
-                                <materialDesignMahApps:PackIcon Kind="Garbage"></materialDesignMahApps:PackIcon>
+                                <materialDesign:PackIcon Kind="Garbage"/>
                             </Button>
                         </ListBoxItem>
-                        
+
                         <!--編集ボタン-->
-                        <ListBoxItem Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right">
+                        <ListBoxItem Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right">
                             <Button Command="{Binding EditCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" Cursor="Hand"
+                                    CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Right" Cursor="Hand"
                                     Height="30"
                                     Width="30"
                                     >
-                                <materialDesignMahApps:PackIcon Kind="Edit"></materialDesignMahApps:PackIcon>
+                                <materialDesignMahApps:PackIcon Kind="Edit"/>
                             </Button>
                         </ListBoxItem>
-                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"/>
+                        <ListBoxItem Content="{Binding Item.detail.detail, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"/>
                     </Grid>
                 </ListBox>
 
                 <!--カード下部に子要素を格納-->
-                <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" Grid.Row="1" Grid.ColumnSpan="3">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <local:TodoItemChildCard  Item="{Binding }" DoneCommand="{Binding ChildDoneCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemCard}}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
