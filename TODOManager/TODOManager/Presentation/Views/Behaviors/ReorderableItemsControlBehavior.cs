@@ -126,7 +126,11 @@ namespace TODOManager.Presentation.Views.Behaviors
         /// <param name="e">イベント引数</param>
         private static void OnPreviewDragEnter(object sender, DragEventArgs e)
         {
-            temporaryData.IsDroppable = true;
+            //ボタンをドラッグするとここがnullになったので暫定対応
+            if (temporaryData != null)
+            {
+                temporaryData.IsDroppable = true;
+            }
         }
 
         /// <summary>
@@ -146,19 +150,23 @@ namespace TODOManager.Presentation.Views.Behaviors
         /// <param name="e">イベント引数</param>
         private static void OnPreviewDrop(object sender, DragEventArgs e)
         {
-            if (temporaryData.IsDroppable)
+            //ボタンをドラッグするとここがnullになったので暫定対応
+            if (temporaryData != null)
             {
-                var itemsControl = sender as ItemsControl;
-                // 異なる ItemsControl 間でドロップ処理されないようにするために
-                // 同一 ItemsControl 内にドラッグされたコンテナが存在することを確認する
-                if (itemsControl.ItemContainerGenerator.IndexFromContainer(temporaryData.DraggedItem) >= 0)
+                if (temporaryData.IsDroppable)
                 {
-                    var targetContainer = GetTemplatedRootElement(e.OriginalSource as FrameworkElement);
-                    var index = itemsControl.ItemContainerGenerator.IndexFromContainer(targetContainer);
-                    if (index >= 0)
+                    var itemsControl = sender as ItemsControl;
+                    // 異なる ItemsControl 間でドロップ処理されないようにするために
+                    // 同一 ItemsControl 内にドラッグされたコンテナが存在することを確認する
+                    if (itemsControl.ItemContainerGenerator.IndexFromContainer(temporaryData.DraggedItem) >= 0)
                     {
-                        var callback = GetCallback(itemsControl);
-                        callback(index);
+                        var targetContainer = GetTemplatedRootElement(e.OriginalSource as FrameworkElement);
+                        var index = itemsControl.ItemContainerGenerator.IndexFromContainer(targetContainer);
+                        if (index >= 0)
+                        {
+                            var callback = GetCallback(itemsControl);
+                            callback(index);
+                        }
                     }
                 }
             }

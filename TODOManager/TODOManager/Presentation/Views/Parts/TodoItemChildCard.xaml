@@ -47,7 +47,7 @@
                     <Button Command="{Binding DoneCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}"
                             Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                            CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}"
+                            CommandParameter="{Binding Item, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Cursor="Hand"
                             >
                         <materialDesignMahApps:PackIcon Kind="Check"></materialDesignMahApps:PackIcon>
                     </Button>
