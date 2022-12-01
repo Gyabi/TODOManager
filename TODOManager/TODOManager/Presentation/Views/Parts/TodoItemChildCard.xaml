@@ -59,7 +59,7 @@
             <ItemsControl ItemsSource="{Binding Item.childItems, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:TodoItemChildCard  Item="{Binding }" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <local:TodoItemChildCard  Item="{Binding }" DoneCommand="{Binding DoneCommand, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TodoItemChildCard}}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
