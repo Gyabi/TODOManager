@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Xml.Linq;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace TODOManager.Infrastructure.Repository
 {
@@ -68,6 +69,29 @@ namespace TODOManager.Infrastructure.Repository
         {
             string query = "DELETE FROM " + tableName + " WHERE ID = " + $"'{id}'";
             ExeQuery(query);
+        }
+
+        /// <summary>
+        /// データの更新
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="fieldDatas"></param>
+        /// <param name="insertDatas"></param>
+        /// <param name="targetID">更新対象ID</param>
+        public static void UpdateData(string tableName, string[] fieldDatas, string[] updateDatas, string id)
+        {
+            //以下のフォーマットでクエリを作る
+            //UPDATE テーブル名 SET カラム名1 = 値1, カラム名2 = 値2, ... WHERE 条件式;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE " + tableName + " SET ");
+
+            IEnumerable<string> datas = fieldDatas.Zip(updateDatas, (fieldData, updateData) => (fieldData + " = " + updateData));
+            sb.Append(string.Join(", ", datas));
+
+            sb.Append(" WHERE ID = " + $"'{id}'");
+
+            //実行
+            ExeQuery(sb.ToString());
         }
 
         /// <summary>
