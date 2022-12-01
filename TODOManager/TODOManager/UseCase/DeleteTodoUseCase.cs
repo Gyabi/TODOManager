@@ -26,6 +26,12 @@ namespace TODOManager.UseCase
             this.todoRepository.DeleteData(todoItems[index].id);
             todoItems.Remove(todoItems[index]);
 
+            //すべてのTODOに対してindexを更新
+            foreach (var (todo, _index) in todoItems.Select((todo, _index) => (todo, _index)))
+            {
+                this.todoRepository.UpdateDataOnlyIndex(todo.id, _index);
+            }
+
         }
     }
 }
